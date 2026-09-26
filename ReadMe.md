@@ -39,3 +39,9 @@ notes_app/
 ├── .gitignore
 ├── requirements.txt
 └── README.md
+
+## 📸 Screenshots
+
+### Swagger API
+
+![Swagger API](Screenshot.png)
