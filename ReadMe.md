@@ -39,6 +39,7 @@ notes_app/
 ├── .gitignore
 ├── requirements.txt
 └── README.md
+```
 
 ## 📸 Screenshots
 
