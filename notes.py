@@ -69,7 +69,7 @@ def get_single_notes(id:int,title:str,db:Session=Depends(get_db)):
     }
 
 @app.get("/get_notes")
-def get_notes(id:int,limit:int,page:int,db:Session=Depends(get_db)):
+def get_notes(id:int,db:Session=Depends(get_db)):
     db_notes=db.execute(text("""
 SELECT content FROM Notes
 WHERE user_id=:id
@@ -89,8 +89,8 @@ def get_users(page:int,limit:int,db:Session=Depends(get_db)):
     }
 
 @app.patch("/update_notes")
-def update_notes(id:int,notes:str,db:Session=Depends(get_db)):
-    db_user=db.query(Notes).filter_by(user_id=id).first()
+def update_notes(id:int,title:str,notes:str,db:Session=Depends(get_db)):
+    db_user=db.query(Notes).filter_by(user_id=id,title=title).first()
     if not db_user:
         return {"msg":"user_not_found"}
     db_user.content = notes
