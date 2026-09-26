@@ -44,4 +44,4 @@ notes_app/
 
 ### Swagger API
 
-![Swagger API](Screenshot.png)
+![Swagger API](screenshot.png)
