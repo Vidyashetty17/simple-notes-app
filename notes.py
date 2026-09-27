@@ -7,13 +7,21 @@ from sqlalchemy.orm import Session
 from jwt_token import get_detail,create_access_token
 from sqlalchemy import TEXT,text
 from datetime import datetime
+from passlib.context import CryptContext
+from dotenv import load_dotenv
+import os       
 
-
+load_dotenv()
 auth=HTTPBearer()
 app =FastAPI()
 
+scheme=os.getenv("SCHEMES")
+
+crypt=CryptContext(schemes=[scheme],deprecated="auto")
+
 @app.post("/create_user")
 def create_user(u:signup,db:Session=Depends(get_db)):
+    u.password=crypt.hash(u.password)
     db_user=User(**u.model_dump())
     db.add(db_user)
     db.commit()
